@@ -7,11 +7,10 @@ export type User = { id: number; name: string; email: string; createdAt: string 
 const router = Router();
 
 
-for (let i = 0; i >= nextId; i++) {
-}
+let nextId = 3;
 const users: User[] = [
-  { id: nextId, name: "Taro", email: "taro@example.com", createdAt: new Date().toISOString() },
-  { id: nextId, name: "Hanako", email: "hanako@example.com", createdAt: new Date().toISOString() },
+  { id: 1, name: "Taro", email: "taro@example.com", createdAt: new Date().toISOString() },
+  { id: 2, name: "Hanako", email: "hanako@example.com", createdAt: new Date().toISOString() },
 ];
 
 // GET /users
