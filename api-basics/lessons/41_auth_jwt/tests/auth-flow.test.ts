@@ -40,4 +40,35 @@ describe("auth flow", () => {
 
     expect(res.status).toBe(403);
   });
+
+  // test("login check -> 400", async () => {
+  //   const app = buildApp();
+  // })
+
+
+  test("トークン改ざんテスト", async () => {
+    const app = buildApp();
+
+    const loginRes = await login(app, "taro3@example.com", "passw0rd");
+    expect(loginRes.status).toBe(200);
+
+    const token = loginRes.body.token as string;
+
+    //トークン改ざん（最後の1文字を変更）
+    const temperedToken = token.slice(0, 1) + "x";
+
+    const res = await request(app)
+    .get("/users/me")
+    .set("Authorization", `Bearer ${temperedToken}`);
+
+    expect(res.status).toBe(401);
+  });
+
+  test("存在しないエンドポイントへのリクエスト", async() => {
+    const app = buildApp();
+
+    const res = await request(app).get("/not-found");
+
+    expect(res.status).toBe(404);
+  })
 });
