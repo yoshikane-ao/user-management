@@ -37,7 +37,7 @@
 ``` txt
 一覧	GET	/users
 1件取得	GET	/users/:id
-作成	POST	/users
+作成	POST	/users/
 更新	PUT	/users/:id
 削除	DELETE	/users/:id
 ```

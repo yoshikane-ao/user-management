@@ -19,12 +19,11 @@ model User {
 }
 
 model Task {
-  id           Int      @id @default(autoincrement())
-  name         String   @db.VarChar(20)
-  email        String   @unique
-  passwordHash String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id        Int      @id @default(autoincrement())
+  title     String   @db.VarChar(20)
+  done      Boolean
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   userId Int
   user   User @relation(fields: [userId], references: [id])

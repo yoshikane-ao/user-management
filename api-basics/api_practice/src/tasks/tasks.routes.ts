@@ -1,34 +1,37 @@
 import { Router } from "express";
 import { validationError } from "../lib/error";
-import * as service from "./users.service";
-import * as repo from "./users.repo";
+import * as service from "./tasks.service";
 
-export const usersRouter = Router();
+export const tasksRouter = Router();
 
-usersRouter.post("/register", async (req, res, next) => {
+tasksRouter.post("/", async (req, res, next) => {
     try {
         //リクエストデータの受け取り
         const body = (req.body ?? {}) as {
-            name?: string;
-            email?: string;
-            password?: string;
+            title?: string;
+            done?: boolean;
+            userId?: number;
         };
 
         //リクエストデータを分割代入
-        const { name, email, password } = body;
+        const { title, done, userId } = body;
 
         //バリデーション処理（email重複確認と必須項目入力チェック等）
 
         // if (users.some((u) => u.email === email)) {
         // return res.status(400).json(validationError("このメールアドレスは既に登録されています。"))};
 
-        if ( !name || !email || !password) {
+        if ( !title || !done === undefined || !userId) {
             return res.status(400).json(validationError("全ての項目を入力してください。")
         )};
 
         //バリデーションが終わったら、
         //const result = usersサービス.register関数を呼び出す。
-        const result = await service.register({name, email, password});
+        const result = await service.create({
+            title: title as string,
+            done: done as boolean,
+            userId: userId as number
+        });
 
         res.status(201).json(result);
 
@@ -39,32 +42,11 @@ usersRouter.post("/register", async (req, res, next) => {
     }
 });
 
-usersRouter.get("/", async(req, res, next) => {
-    try {
-        const users = await service.findAllusers();
-        res.status(200).json(users);
-        
-    } catch (error) {
-        next(error);
-    }
-});
-
-usersRouter.get("/:id", async (req, res, next) => {
+tasksRouter.delete("/:id", async (req, res, next) => {
     try {
         const id = Number(req.params.id);
-        const users = await service.findByIdUsers(id);
-        res.status(200).json(users);
-
-    } catch (error) {
-        next(error);
-    }
-});
-
-usersRouter.delete("/:id", async (req, res, next) => {
-    try {
-        const id = Number(req.params.id);
-        const users = await service.deleteUser(id);
-        res.status(200).json(users);
+        const tasks = await service.deleteTask(id);
+        res.status(200).json(tasks);
 
     } catch (error) {
         next(error);
@@ -72,12 +54,13 @@ usersRouter.delete("/:id", async (req, res, next) => {
 });
 
 
-usersRouter.put("/:id", async (req, res, next) => {
+tasksRouter.put("/:id", async (req, res, next) => {
     try {
         const id = Number(req.params.id);
         const body = (req.body ?? {}) as {
-            name?: string;
-            email?: string;
+            title?: string;
+            done?: boolean;
+            userId?: number;
         };
         const result = await service.updateById(id, body);
         res.status(200).json(result);
@@ -85,5 +68,3 @@ usersRouter.put("/:id", async (req, res, next) => {
         next(error);
     }
 });
-
-//バリデーションするためには指定したエンドポイントからリクエストをもらう必要がある

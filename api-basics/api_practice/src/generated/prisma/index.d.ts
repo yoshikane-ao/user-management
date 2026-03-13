@@ -2133,9 +2133,8 @@ export namespace Prisma {
 
   export type TaskMinAggregateOutputType = {
     id: number | null
-    name: string | null
-    email: string | null
-    passwordHash: string | null
+    title: string | null
+    done: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -2143,9 +2142,8 @@ export namespace Prisma {
 
   export type TaskMaxAggregateOutputType = {
     id: number | null
-    name: string | null
-    email: string | null
-    passwordHash: string | null
+    title: string | null
+    done: boolean | null
     createdAt: Date | null
     updatedAt: Date | null
     userId: number | null
@@ -2153,9 +2151,8 @@ export namespace Prisma {
 
   export type TaskCountAggregateOutputType = {
     id: number
-    name: number
-    email: number
-    passwordHash: number
+    title: number
+    done: number
     createdAt: number
     updatedAt: number
     userId: number
@@ -2175,9 +2172,8 @@ export namespace Prisma {
 
   export type TaskMinAggregateInputType = {
     id?: true
-    name?: true
-    email?: true
-    passwordHash?: true
+    title?: true
+    done?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -2185,9 +2181,8 @@ export namespace Prisma {
 
   export type TaskMaxAggregateInputType = {
     id?: true
-    name?: true
-    email?: true
-    passwordHash?: true
+    title?: true
+    done?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -2195,9 +2190,8 @@ export namespace Prisma {
 
   export type TaskCountAggregateInputType = {
     id?: true
-    name?: true
-    email?: true
-    passwordHash?: true
+    title?: true
+    done?: true
     createdAt?: true
     updatedAt?: true
     userId?: true
@@ -2292,9 +2286,8 @@ export namespace Prisma {
 
   export type TaskGroupByOutputType = {
     id: number
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt: Date
     updatedAt: Date
     userId: number
@@ -2321,9 +2314,8 @@ export namespace Prisma {
 
   export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    email?: boolean
-    passwordHash?: boolean
+    title?: boolean
+    done?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -2332,9 +2324,8 @@ export namespace Prisma {
 
   export type TaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    email?: boolean
-    passwordHash?: boolean
+    title?: boolean
+    done?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -2343,9 +2334,8 @@ export namespace Prisma {
 
   export type TaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    name?: boolean
-    email?: boolean
-    passwordHash?: boolean
+    title?: boolean
+    done?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
@@ -2354,15 +2344,14 @@ export namespace Prisma {
 
   export type TaskSelectScalar = {
     id?: boolean
-    name?: boolean
-    email?: boolean
-    passwordHash?: boolean
+    title?: boolean
+    done?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     userId?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "passwordHash" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "done" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
   }
@@ -2380,9 +2369,8 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      name: string
-      email: string
-      passwordHash: string
+      title: string
+      done: boolean
       createdAt: Date
       updatedAt: Date
       userId: number
@@ -2811,9 +2799,8 @@ export namespace Prisma {
    */
   interface TaskFieldRefs {
     readonly id: FieldRef<"Task", 'Int'>
-    readonly name: FieldRef<"Task", 'String'>
-    readonly email: FieldRef<"Task", 'String'>
-    readonly passwordHash: FieldRef<"Task", 'String'>
+    readonly title: FieldRef<"Task", 'String'>
+    readonly done: FieldRef<"Task", 'Boolean'>
     readonly createdAt: FieldRef<"Task", 'DateTime'>
     readonly updatedAt: FieldRef<"Task", 'DateTime'>
     readonly userId: FieldRef<"Task", 'Int'>
@@ -3264,9 +3251,8 @@ export namespace Prisma {
 
   export const TaskScalarFieldEnum: {
     id: 'id',
-    name: 'name',
-    email: 'email',
-    passwordHash: 'passwordHash',
+    title: 'title',
+    done: 'done',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     userId: 'userId'
@@ -3335,6 +3321,13 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -3422,9 +3415,8 @@ export namespace Prisma {
     OR?: TaskWhereInput[]
     NOT?: TaskWhereInput | TaskWhereInput[]
     id?: IntFilter<"Task"> | number
-    name?: StringFilter<"Task"> | string
-    email?: StringFilter<"Task"> | string
-    passwordHash?: StringFilter<"Task"> | string
+    title?: StringFilter<"Task"> | string
+    done?: BoolFilter<"Task"> | boolean
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     userId?: IntFilter<"Task"> | number
@@ -3433,9 +3425,8 @@ export namespace Prisma {
 
   export type TaskOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
+    title?: SortOrder
+    done?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -3444,23 +3435,21 @@ export namespace Prisma {
 
   export type TaskWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    email?: string
     AND?: TaskWhereInput | TaskWhereInput[]
     OR?: TaskWhereInput[]
     NOT?: TaskWhereInput | TaskWhereInput[]
-    name?: StringFilter<"Task"> | string
-    passwordHash?: StringFilter<"Task"> | string
+    title?: StringFilter<"Task"> | string
+    done?: BoolFilter<"Task"> | boolean
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     userId?: IntFilter<"Task"> | number
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
-  }, "id" | "email">
+  }, "id">
 
   export type TaskOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
+    title?: SortOrder
+    done?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -3476,9 +3465,8 @@ export namespace Prisma {
     OR?: TaskScalarWhereWithAggregatesInput[]
     NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Task"> | number
-    name?: StringWithAggregatesFilter<"Task"> | string
-    email?: StringWithAggregatesFilter<"Task"> | string
-    passwordHash?: StringWithAggregatesFilter<"Task"> | string
+    title?: StringWithAggregatesFilter<"Task"> | string
+    done?: BoolWithAggregatesFilter<"Task"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
     userId?: IntWithAggregatesFilter<"Task"> | number
@@ -3549,9 +3537,8 @@ export namespace Prisma {
   }
 
   export type TaskCreateInput = {
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutTasksInput
@@ -3559,18 +3546,16 @@ export namespace Prisma {
 
   export type TaskUncheckedCreateInput = {
     id?: number
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
   }
 
   export type TaskUpdateInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutTasksNestedInput
@@ -3578,9 +3563,8 @@ export namespace Prisma {
 
   export type TaskUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -3588,27 +3572,24 @@ export namespace Prisma {
 
   export type TaskCreateManyInput = {
     id?: number
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
     userId: number
   }
 
   export type TaskUpdateManyMutationInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     userId?: IntFieldUpdateOperationsInput | number
@@ -3744,6 +3725,11 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type UserScalarRelationFilter = {
     is?: UserWhereInput
     isNot?: UserWhereInput
@@ -3751,9 +3737,8 @@ export namespace Prisma {
 
   export type TaskCountOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
+    title?: SortOrder
+    done?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -3766,9 +3751,8 @@ export namespace Prisma {
 
   export type TaskMaxOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
+    title?: SortOrder
+    done?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -3776,9 +3760,8 @@ export namespace Prisma {
 
   export type TaskMinOrderByAggregateInput = {
     id?: SortOrder
-    name?: SortOrder
-    email?: SortOrder
-    passwordHash?: SortOrder
+    title?: SortOrder
+    done?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     userId?: SortOrder
@@ -3787,6 +3770,14 @@ export namespace Prisma {
   export type TaskSumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type TaskCreateNestedManyWithoutUserInput = {
@@ -3851,6 +3842,10 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutTasksInput, UserUncheckedCreateWithoutTasksInput>
     connectOrCreate?: UserCreateOrConnectWithoutTasksInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutTasksNestedInput = {
@@ -3955,19 +3950,30 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type TaskCreateWithoutUserInput = {
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type TaskUncheckedCreateWithoutUserInput = {
     id?: number
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4003,9 +4009,8 @@ export namespace Prisma {
     OR?: TaskScalarWhereInput[]
     NOT?: TaskScalarWhereInput | TaskScalarWhereInput[]
     id?: IntFilter<"Task"> | number
-    name?: StringFilter<"Task"> | string
-    email?: StringFilter<"Task"> | string
-    passwordHash?: StringFilter<"Task"> | string
+    title?: StringFilter<"Task"> | string
+    done?: BoolFilter<"Task"> | boolean
     createdAt?: DateTimeFilter<"Task"> | Date | string
     updatedAt?: DateTimeFilter<"Task"> | Date | string
     userId?: IntFilter<"Task"> | number
@@ -4063,35 +4068,31 @@ export namespace Prisma {
 
   export type TaskCreateManyUserInput = {
     id?: number
-    name: string
-    email: string
-    passwordHash: string
+    title: string
+    done: boolean
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type TaskUpdateWithoutUserInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskUncheckedUpdateWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    passwordHash?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    done?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
