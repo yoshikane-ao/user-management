@@ -1,41 +1,43 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
-type Task = { id: number; title: string; done: boolean };
+import TaskList from "./components/TaskList.vue";
+import { useTasks } from "./composables/useTasks";
 
-const tasks = ref<Task[]>([]);
-const newTitle = ref("");
-let nextId = 1;
-
-function addTask() {
-  // 入力がなければ処理終了
-  if (!newTitle.value.trim()) return;
-  //タスクpushして、前回のidに+1して、
-  tasks.value.push({ id: nextId++, title: newTitle.value.trim(), done: false });
-  //newタイトルバリューを初期化する
-  newTitle.value = "";
-}
-
-// const doneCount = computed(() => tasks.value.length);
-const doneCount = computed(() =>
-// console.log(tasks.value.done);
-tasks.value.filter(t => t.done).length
-
-);
+const {
+  newTitle,
+  filter,
+  doneCount,
+  activeCount,
+  filteredTasks,
+  cleanTaskCount,
+  addTask,
+  toggleTask,
+  removeTask,
+  editTask,
+  setFilter,
+} = useTasks();
 </script>
 
 <template>
-  <input v-model="newTitle" placeholder="task title" />
-  <button @click="addTask">追加</button>
+  <main>
+    <p>掃除：{{ cleanTaskCount }}</p>
+    
+    <p>done: {{ doneCount }} / active: {{ activeCount }}</p>
 
-  <ul>
-    <li v-for="t in tasks" :key="t.id">
-      <label>
-        <div class="donecheck">
-        <input type="checkbox" v-model="t.done" />
-        {{ t.title }}
-        </div>
-      </label>
-    </li>
-  </ul>
-  <p>{{ doneCount }}</p>
+    <div>
+      <button type="button" @click="setFilter('all')">all</button>
+      <button type="button" @click="setFilter('active')">active</button>
+      <button type="button" @click="setFilter('done')">done</button>
+      <button type="button" @click="setFilter('掃除')">掃除</button>
+      <span>（current: {{ filter }}）</span>
+    </div>
+
+    <h1>Tasks</h1>
+
+    <form @submit.prevent="addTask">
+      <input v-model="newTitle" placeholder="New task" />
+      <button type="submit">追加</button>
+    </form>
+
+    <TaskList v-bind:tasks="filteredTasks" @toggle="toggleTask" @remove="removeTask" @edit="editTask" />
+  </main>
 </template>
