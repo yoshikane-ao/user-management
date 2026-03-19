@@ -22,13 +22,14 @@ usersRouter.post("/register", async (req, res, next) => {
         // if (users.some((u) => u.email === email)) {
         // return res.status(400).json(validationError("このメールアドレスは既に登録されています。"))};
 
-        if ( !name || !email || !password) {
+        if (!name || !email || !password) {
             return res.status(400).json(validationError("全ての項目を入力してください。")
-        )};
+            )
+        };
 
         //バリデーションが終わったら、
         //const result = usersサービス.register関数を呼び出す。
-        const result = await service.register({name, email, password});
+        const result = await service.register({ name, email, password });
 
         res.status(201).json(result);
 
@@ -39,11 +40,11 @@ usersRouter.post("/register", async (req, res, next) => {
     }
 });
 
-usersRouter.get("/", async(req, res, next) => {
+usersRouter.get("/", async (req, res, next) => {
     try {
         const users = await service.findAllusers();
         res.status(200).json(users);
-        
+
     } catch (error) {
         next(error);
     }
